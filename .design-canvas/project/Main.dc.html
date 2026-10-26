@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Nerd Quotes home</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&amp;family=Newsreader:ital,opsz,wght@0,6..72,400;1,6..72,400&amp;family=Space+Grotesk:wght@400;500;700&amp;display=swap">
+<style>
+body{margin:0;background:#0E1116}
+a{color:#EDEBE4;text-underline-offset:4px}a:hover{color:#F2A33A}
+button{font:inherit}
+:focus-visible{outline:2px solid #F2A33A;outline-offset:3px}
+.btn:hover{filter:brightness(1.1)}
+</style>
+</helmet>
+<div style="min-height: 1000px; background: #0E1116; color: #EDEBE4; font-family: 'Space Grotesk', system-ui, sans-serif; display: flex; flex-direction: column;">
+  <header style="border-bottom: 1px solid #232832;">
+    <nav aria-label="Main" style="max-width: 1120px; margin: 0 auto; padding: 20px clamp(16px, 4vw, 48px); display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px;">
+      <a href="Main.dc.html" style="text-decoration: none; font-weight: 700; font-size: 22px; letter-spacing: -0.01em;">nerd<span style="color: {{accent}};">quotes</span></a>
+      <div style="display: flex; flex-wrap: wrap; gap: 8px 28px; font-size: 16px;">
+        <a href="Character.dc.html">Characters</a>
+        <a href="#today">Quote of the day</a>
+        <a href="Connect.dc.html">Use with MCP</a>
+      </div>
+    </nav>
+  </header>
+
+  <main style="flex-grow: 1; width: 100%; max-width: 1120px; box-sizing: border-box; margin: 0 auto; padding: clamp(48px, 8vw, 112px) clamp(16px, 4vw, 48px) 64px; display: flex; flex-direction: column; gap: 40px;">
+    <p style="margin: 0; font-family: 'JetBrains Mono', monospace; font-size: 13px; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; color: #9BA3AE;">From the Star Trek block</p>
+
+    <figure aria-live="polite" style="margin: 0; display: flex; flex-direction: column; gap: 32px;">
+      <blockquote style="margin: 0; font-family: 'Newsreader', Georgia, serif; font-size: clamp(34px, 5vw, 64px); line-height: 1.12; letter-spacing: -0.01em; text-wrap: balance;"><span aria-hidden="true" style="color: {{accent}};">“</span>{{q.text}}<span aria-hidden="true" style="color: {{accent}};">”</span></blockquote>
+      <figcaption style="display: flex; flex-direction: column; gap: 8px;">
+        <span style="font-size: 21px; font-weight: 500;">
+          <sc-if value="{{q.spock}}" hint-placeholder-val="{{true}}"><a href="Character.dc.html">{{q.who}}</a></sc-if>
+          <sc-if value="{{q.notSpock}}" hint-placeholder-val="{{false}}">{{q.who}}</sc-if>
+        </span>
+        <cite style="font-style: normal; font-family: 'JetBrains Mono', monospace; font-size: 15px; color: #9BA3AE;">{{q.src}}</cite>
+      </figcaption>
+    </figure>
+
+    <div style="display: flex; flex-wrap: wrap; gap: 12px;">
+      <button type="button" class="btn" onClick="{{next}}" style="min-height: 48px; padding: 0 24px; border: 0; border-radius: 8px; background: {{accent}}; color: #14100A; font-size: 17px; font-weight: 700; cursor: pointer; display: flex; align-items: center; gap: 10px;">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 3h5v5"></path><path d="M4 20 21 3"></path><path d="M21 16v5h-5"></path><path d="M15 15l6 6"></path><path d="M4 4l5 5"></path></svg>
+        Another quote
+      </button>
+      <button type="button" class="btn" onClick="{{copy}}" style="min-height: 48px; padding: 0 20px; border: 1px solid #39404C; border-radius: 8px; background: transparent; color: #EDEBE4; font-size: 17px; font-weight: 500; cursor: pointer; display: flex; align-items: center; gap: 10px;">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="12" height="12" rx="2"></rect><path d="M5 15V5a2 2 0 0 1 2-2h10"></path></svg>
+        {{copyLabel}}
+      </button>
+    </div>
+
+    <section id="today" aria-labelledby="today-h" style="margin-top: 48px; border-top: 1px solid #232832; padding-top: 32px; display: flex; flex-wrap: wrap; gap: 20px 64px;">
+      <div style="flex: 1 1 220px; display: flex; flex-direction: column; gap: 6px;">
+        <h2 id="today-h" style="margin: 0; font-size: 20px; font-weight: 700;">Quote of the day</h2>
+        <p style="margin: 0; font-family: 'JetBrains Mono', monospace; font-size: 14px; color: #9BA3AE;">Sun, 25 Oct 2026 · same for everyone · changes at 00:00 UTC</p>
+      </div>
+      <figure style="flex: 999 1 480px; margin: 0; display: flex; flex-direction: column; gap: 10px;">
+        <blockquote style="margin: 0; font-family: 'Newsreader', Georgia, serif; font-size: 28px; line-height: 1.25;">“Change is the essential process of all existence.”</blockquote>
+        <figcaption style="font-size: 16px; color: #C9CDD3;"><a href="Character.dc.html">Spock</a> <span style="font-family: 'JetBrains Mono', monospace; font-size: 14px; color: #9BA3AE;">· The Original Series · “Let That Be Your Last Battlefield” · 1969</span></figcaption>
+      </figure>
+    </section>
+  </main>
+
+  <footer style="border-top: 1px solid #232832;">
+    <div style="max-width: 1120px; margin: 0 auto; padding: 24px clamp(16px, 4vw, 48px); display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; font-size: 15px; color: #9BA3AE;">
+      <span>Every quote is checked against the episode or film it comes from.</span>
+      <span>Also a remote MCP server and a JSON API. <a href="Connect.dc.html">How to connect</a></span>
+    </div>
+  </footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"accent":{"editor":"color","default":"#F2A33A","options":["#F2A33A","#6CB4FF","#7DD3A8"]},"$preview":{"width":1440,"height":1000}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { i: 0, copied: false };
+  }
+  quotes() {
+    return [
+      { text: "Live long and prosper.", who: "Spock", spock: true, src: "The Original Series · “Amok Time” · 1967" },
+      { text: "What does God need with a starship?", who: "Captain Kirk", spock: false, src: "Star Trek V: The Final Frontier · 1989" },
+      { text: "Could you please continue the petty bickering? I find it most intriguing.", who: "Data", spock: false, src: "The Next Generation · “Haven” · 1987" },
+      { text: "I cannae change the laws of physics! I’ve got to have thirty minutes!", who: "Scotty", spock: false, src: "The Original Series · “The Naked Time” · 1966" },
+      { text: "Things are only impossible until they are not.", who: "Jean-Luc Picard", spock: false, src: "The Next Generation · “When the Bough Breaks” · 1988" },
+      { text: "Insufficient facts always invite danger.", who: "Spock", spock: true, src: "The Original Series · “Space Seed” · 1967" },
+      { text: "Compassion: that’s the one thing no machine ever had. Maybe it’s the one thing that keeps men ahead of them.", who: "Dr. McCoy", spock: false, src: "The Original Series · “The Ultimate Computer” · 1968" },
+      { text: "It’s not safe out here. It’s wondrous, with treasures to satiate desires both subtle and gross; but it’s not for the timid.", who: "Q", spock: false, src: "The Next Generation · “Q Who” · 1989" },
+      { text: "I have been and always shall be your friend.", who: "Spock", spock: true, src: "Star Trek II: The Wrath of Khan · 1982" }
+    ];
+  }
+  renderVals() {
+    const qs = this.quotes();
+    const i = this.state.i % qs.length;
+    const q = qs[i];
+    return {
+      accent: this.props.accent ?? '#F2A33A',
+      q: { text: q.text, who: q.who, src: q.src, spock: q.spock, notSpock: !q.spock },
+      copyLabel: this.state.copied ? 'Copied' : 'Copy quote',
+      next: () => {
+        let j = i;
+        while (j === i) j = Math.floor(Math.random() * qs.length);
+        this.setState({ i: j, copied: false });
+      },
+      copy: () => {
+        const t = '“' + q.text + '” — ' + q.who;
+        if (navigator.clipboard) navigator.clipboard.writeText(t).catch(() => {});
+        this.setState({ copied: true });
+      }
+    };
+  }
+}
+</script>
+</body>
+</html>

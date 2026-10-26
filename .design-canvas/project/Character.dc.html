@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Spock quotes</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&amp;family=Newsreader:ital,opsz,wght@0,6..72,400;1,6..72,400&amp;family=Space+Grotesk:wght@400;500;700&amp;display=swap">
+<style>
+body{margin:0;background:#0E1116}
+a{color:#EDEBE4;text-underline-offset:4px}a:hover{color:#F2A33A}
+:focus-visible{outline:2px solid #F2A33A;outline-offset:3px}
+</style>
+</helmet>
+<div style="min-height: 1700px; background: #0E1116; color: #EDEBE4; font-family: 'Space Grotesk', system-ui, sans-serif; display: flex; flex-direction: column;">
+  <header style="border-bottom: 1px solid #232832;">
+    <nav aria-label="Main" style="max-width: 1120px; margin: 0 auto; padding: 20px clamp(16px, 4vw, 48px); display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px;">
+      <a href="Main.dc.html" style="text-decoration: none; font-weight: 700; font-size: 22px; letter-spacing: -0.01em;">nerd<span style="color: {{accent}};">quotes</span></a>
+      <div style="display: flex; flex-wrap: wrap; gap: 8px 28px; font-size: 16px;">
+        <a href="Character.dc.html" aria-current="page" style="color: {{accent}};">Characters</a>
+        <a href="Main.dc.html#today">Quote of the day</a>
+        <a href="Connect.dc.html">Use with MCP</a>
+      </div>
+    </nav>
+  </header>
+
+  <div style="flex-grow: 1; width: 100%; max-width: 1120px; box-sizing: border-box; margin: 0 auto; padding: 56px clamp(16px, 4vw, 48px) 80px; display: flex; flex-wrap: wrap; align-items: flex-start; gap: 48px 64px;">
+    <nav aria-labelledby="chars-h" style="flex: 1 1 220px; max-width: 280px; display: flex; flex-direction: column; gap: 12px;">
+      <h2 id="chars-h" style="margin: 0; font-family: 'JetBrains Mono', monospace; font-size: 13px; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; color: #9BA3AE;">Star Trek characters</h2>
+      <ul style="margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column;">
+        <sc-for list="{{chars}}" as="c" hint-placeholder-count="10">
+          <li style="border-bottom: 1px solid #232832;">
+            <a href="Character.dc.html" aria-current="{{c.current}}" style="min-height: 44px; display: flex; align-items: center; justify-content: space-between; gap: 12px; text-decoration: none; font-size: 16px; font-weight: {{c.weight}}; color: {{c.color}};">
+              <span>{{c.name}}</span>
+              <span style="font-family: 'JetBrains Mono', monospace; font-size: 14px; color: #9BA3AE;">{{c.count}}</span>
+            </a>
+          </li>
+        </sc-for>
+      </ul>
+    </nav>
+
+    <main style="flex: 999 1 560px; min-width: 0; display: flex; flex-direction: column; gap: 32px;">
+      <div style="display: flex; flex-direction: column; gap: 10px;">
+        <p style="margin: 0; font-family: 'JetBrains Mono', monospace; font-size: 13px; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; color: #9BA3AE;">Star Trek · The Original Series and films</p>
+        <h1 style="margin: 0; font-size: clamp(44px, 6vw, 72px); font-weight: 700; letter-spacing: -0.02em; line-height: 1;">Spock</h1>
+        <p style="margin: 0; font-size: 17px; color: #C9CDD3;">13 quotes · 8 with a confirmed source</p>
+      </div>
+
+      <ol style="margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column;">
+        <sc-for list="{{quotes}}" as="q" hint-placeholder-count="13">
+          <li style="border-top: 1px solid #232832; padding: 24px 0; display: flex; flex-direction: column; gap: 10px;">
+            <blockquote style="margin: 0; font-family: 'Newsreader', Georgia, serif; font-size: 25px; line-height: 1.3;">“{{q.text}}”</blockquote>
+            <sc-if value="{{q.sourced}}" hint-placeholder-val="{{true}}">
+              <cite style="font-style: normal; font-family: 'JetBrains Mono', monospace; font-size: 14px; color: #9BA3AE;">{{q.src}}</cite>
+            </sc-if>
+            <sc-if value="{{q.pending}}" hint-placeholder-val="{{false}}">
+              <span style="align-self: flex-start; display: flex; align-items: center; gap: 8px; font-family: 'JetBrains Mono', monospace; font-size: 13px; font-weight: 500; color: #EDEBE4; border: 1px dashed #5A6270; border-radius: 6px; padding: 4px 10px;">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path></svg>
+                Source not yet confirmed
+              </span>
+            </sc-if>
+          </li>
+        </sc-for>
+      </ol>
+    </main>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"accent":{"editor":"color","default":"#F2A33A","options":["#F2A33A","#6CB4FF","#7DD3A8"]},"$preview":{"width":1440,"height":1700}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const accent = this.props.accent ?? '#F2A33A';
+    const people = [
+      ['Spock', 13], ['Captain Kirk', 7], ['Jean-Luc Picard', 7], ['Dr. McCoy', 5],
+      ['Data', 4], ['William T. Riker', 4], ['Deanna Troi', 3], ['Lt. Worf', 3],
+      ['Scotty', 3], ['Q', 1], ['Kathryn Janeway', 1]
+    ];
+    const chars = people.map(([name, count]) => {
+      const cur = name === 'Spock';
+      return { name, count, current: cur ? 'page' : 'false', weight: cur ? 700 : 400, color: cur ? accent : '#EDEBE4' };
+    });
+    const raw = [
+      ["Live long and prosper.", "The Original Series · “Amok Time” · 1967"],
+      ["Logic is the beginning of wisdom, not the end.", "Star Trek VI: The Undiscovered Country · 1991"],
+      ["You may find that having is not so pleasing a thing as wanting. This is not logical, but it is often true.", "The Original Series · “Amok Time” · 1967"],
+      ["Insufficient facts always invite danger.", "The Original Series · “Space Seed” · 1967"],
+      ["Change is the essential process of all existence.", "The Original Series · “Let That Be Your Last Battlefield” · 1969"],
+      ["Computers make excellent and efficient servants, but I have no wish to serve under them.", "The Original Series · “The Ultimate Computer” · 1968"],
+      ["I have been and always shall be your friend.", "Star Trek II: The Wrath of Khan · 1982"],
+      ["Without followers, evil cannot spread.", "The Original Series · “And the Children Shall Lead” · 1968"],
+      ["Emotions are alien to me. I’m a scientist.", ""],
+      ["In critical moments, men sometimes see exactly what they wish to see.", ""],
+      ["Madness has no purpose. Or reason. But it may have a goal.", ""],
+      ["Curious, how often you humans manage that which you do not want.", ""],
+      ["Humans do have an amazing capacity for believing what they choose — and excluding that which is painful.", ""]
+    ];
+    const quotes = raw.map(([text, src]) => ({ text, src, sourced: !!src, pending: !src }));
+    return { accent, chars, quotes };
+  }
+}
+</script>
+</body>
+</html>

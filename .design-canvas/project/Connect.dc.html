@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Use Nerd Quotes with MCP</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&amp;family=Newsreader:ital,opsz,wght@0,6..72,400;1,6..72,400&amp;family=Space+Grotesk:wght@400;500;700&amp;display=swap">
+<style>
+body{margin:0;background:#0E1116}
+a{color:#EDEBE4;text-underline-offset:4px}a:hover{color:#F2A33A}
+button{font:inherit}
+:focus-visible{outline:2px solid #F2A33A;outline-offset:3px}
+.btn:hover{filter:brightness(1.1)}
+th,td{text-align:left;vertical-align:top;padding:14px 16px;border-bottom:1px solid #232832}
+th{font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:500;letter-spacing:0.06em;text-transform:uppercase;color:#9BA3AE}
+code{font-family:'JetBrains Mono',monospace}
+</style>
+</helmet>
+<div style="min-height: 1900px; background: #0E1116; color: #EDEBE4; font-family: 'Space Grotesk', system-ui, sans-serif; display: flex; flex-direction: column;">
+  <header style="border-bottom: 1px solid #232832;">
+    <nav aria-label="Main" style="max-width: 1120px; margin: 0 auto; padding: 20px clamp(16px, 4vw, 48px); display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px;">
+      <a href="Main.dc.html" style="text-decoration: none; font-weight: 700; font-size: 22px; letter-spacing: -0.01em;">nerd<span style="color: {{accent}};">quotes</span></a>
+      <div style="display: flex; flex-wrap: wrap; gap: 8px 28px; font-size: 16px;">
+        <a href="Character.dc.html">Characters</a>
+        <a href="Main.dc.html#today">Quote of the day</a>
+        <a href="Connect.dc.html" aria-current="page" style="color: {{accent}};">Use with MCP</a>
+      </div>
+    </nav>
+  </header>
+
+  <main style="flex-grow: 1; width: 100%; max-width: 880px; box-sizing: border-box; margin: 0 auto; padding: 64px clamp(16px, 4vw, 48px) 96px; display: flex; flex-direction: column; gap: 56px;">
+    <div style="display: flex; flex-direction: column; gap: 16px;">
+      <h1 style="margin: 0; font-size: clamp(36px, 5vw, 56px); font-weight: 700; letter-spacing: -0.02em; line-height: 1.05;">Use it from your AI agent</h1>
+      <p style="margin: 0; font-size: 19px; line-height: 1.5; color: #C9CDD3; max-width: 640px;">Nerd Quotes is also a remote MCP server. Add one URL to any MCP client. Nothing to install, no key, no sign-up.</p>
+    </div>
+
+    <section aria-labelledby="url-h" style="display: flex; flex-direction: column; gap: 12px;">
+      <h2 id="url-h" style="margin: 0; font-size: 20px; font-weight: 700;">Server URL</h2>
+      <div style="display: flex; flex-wrap: wrap; align-items: stretch; gap: 12px;">
+        <code style="flex: 1 1 320px; min-width: 0; display: flex; align-items: center; min-height: 52px; box-sizing: border-box; padding: 0 18px; border: 1px solid #39404C; border-radius: 8px; background: #151922; font-size: 17px; overflow-x: auto; white-space: nowrap;">https://[YOUR-DOMAIN]/mcp</code>
+        <button type="button" class="btn" onClick="{{copy}}" style="min-height: 52px; padding: 0 22px; border: 0; border-radius: 8px; background: {{accent}}; color: #14100A; font-size: 17px; font-weight: 700; cursor: pointer; display: flex; align-items: center; gap: 10px;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="12" height="12" rx="2"></rect><path d="M5 15V5a2 2 0 0 1 2-2h10"></path></svg>
+          {{copyLabel}}
+        </button>
+      </div>
+    </section>
+
+    <section aria-labelledby="add-h" style="display: flex; flex-direction: column; gap: 20px;">
+      <h2 id="add-h" style="margin: 0; font-size: 20px; font-weight: 700;">Add it to a client</h2>
+      <div style="display: flex; flex-direction: column; gap: 8px;">
+        <h3 style="margin: 0; font-size: 16px; font-weight: 500; color: #C9CDD3;">Claude Code</h3>
+        <pre style="margin: 0; padding: 18px 20px; border-radius: 8px; background: #151922; border: 1px solid #232832; font-family: 'JetBrains Mono', monospace; font-size: 15px; line-height: 1.6; overflow-x: auto; white-space: pre;">claude mcp add --transport http nerdquotes https://[YOUR-DOMAIN]/mcp</pre>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 8px;">
+        <h3 style="margin: 0; font-size: 16px; font-weight: 500; color: #C9CDD3;">Any client with a JSON config</h3>
+        <pre style="margin: 0; padding: 18px 20px; border-radius: 8px; background: #151922; border: 1px solid #232832; font-family: 'JetBrains Mono', monospace; font-size: 15px; line-height: 1.6; overflow-x: auto; white-space: pre;">{
+  "mcpServers": {
+    "nerdquotes": {
+      "url": "https://[YOUR-DOMAIN]/mcp"
+    }
+  }
+}</pre>
+      </div>
+    </section>
+
+    <section aria-labelledby="tools-h" style="display: flex; flex-direction: column; gap: 16px;">
+      <h2 id="tools-h" style="margin: 0; font-size: 20px; font-weight: 700;">Tools</h2>
+      <div style="overflow-x: auto; border: 1px solid #232832; border-radius: 8px;">
+        <table style="width: 100%; min-width: 640px; border-collapse: collapse; font-size: 16px; line-height: 1.45;">
+          <thead><tr><th scope="col">Tool</th><th scope="col">Arguments</th><th scope="col">Returns</th></tr></thead>
+          <tbody>
+            <tr><td><code style="color: {{accent}};">random_quote</code></td><td><code>block</code> optional, e.g. <code>startrek</code></td><td>One quote, from any block or from the one you name</td></tr>
+            <tr><td><code style="color: {{accent}};">quote_of_the_day</code></td><td>none</td><td>Today’s quote, the same for everyone, changes at 00:00 UTC</td></tr>
+            <tr><td><code style="color: {{accent}};">quotes_by_character</code></td><td><code>character</code>, e.g. <code>spock</code></td><td>Every quote from that character</td></tr>
+            <tr><td><code style="color: {{accent}};">list_blocks</code></td><td>none</td><td>The blocks and how many quotes each has</td></tr>
+            <tr><td style="border-bottom: 0;"><code style="color: {{accent}};">list_characters</code></td><td style="border-bottom: 0;"><code>block</code> optional</td><td style="border-bottom: 0;">Characters, their ids and quote counts</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section aria-labelledby="api-h" style="display: flex; flex-direction: column; gap: 16px;">
+      <h2 id="api-h" style="margin: 0; font-size: 20px; font-weight: 700;">Plain JSON API</h2>
+      <p style="margin: 0; font-size: 17px; line-height: 1.5; color: #C9CDD3;">The same five things, as GET requests.</p>
+      <pre style="margin: 0; padding: 18px 20px; border-radius: 8px; background: #151922; border: 1px solid #232832; font-family: 'JetBrains Mono', monospace; font-size: 15px; line-height: 1.8; overflow-x: auto; white-space: pre;">GET /api/random?block=startrek
+GET /api/today
+GET /api/characters/spock
+GET /api/blocks
+GET /api/characters?block=startrek</pre>
+      <h3 style="margin: 8px 0 0; font-size: 16px; font-weight: 500; color: #C9CDD3;">Every quote looks like this</h3>
+      <pre style="margin: 0; padding: 18px 20px; border-radius: 8px; background: #151922; border: 1px solid #232832; font-family: 'JetBrains Mono', monospace; font-size: 15px; line-height: 1.6; overflow-x: auto; white-space: pre;">{
+  "id": "startrek-spock-live-long-and-prosper",
+  "text": "Live long and prosper.",
+  "character": { "id": "spock", "name": "Spock" },
+  "block": "startrek",
+  "source": {
+    "title": "Star Trek: The Original Series",
+    "episode": "Amok Time",
+    "year": 1967
+  }
+}</pre>
+    </section>
+  </main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"accent":{"editor":"color","default":"#F2A33A","options":["#F2A33A","#6CB4FF","#7DD3A8"]},"$preview":{"width":1440,"height":1900}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { copied: false };
+  }
+  renderVals() {
+    return {
+      accent: this.props.accent ?? '#F2A33A',
+      copyLabel: this.state.copied ? 'Copied' : 'Copy URL',
+      copy: () => {
+        if (navigator.clipboard) navigator.clipboard.writeText('https://[YOUR-DOMAIN]/mcp').catch(() => {});
+        this.setState({ copied: true });
+      }
+    };
+  }
+}
+</script>
+</body>
+</html>
